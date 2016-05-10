@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>1 Col Portfolio - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/agency.css' %}" rel="stylesheet">
+    <link href="{% static 'css/daterangepicker.css' %}" rel="stylesheet">
+
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        body {
+            padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        }
+
+        footer {
+            margin: 50px 0;
+        }
+        #bg {
+          position: fixed;
+          top: 0;
+          left: 0;
+
+          /* Preserve aspet ratio */
+          min-width: 100%;
+          min-height: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <img src="/static/img/bg.jpg" id="bg" alt="">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style='color: #fed136;font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;' href="#">News Focus</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <form class="navbar-form navbar-left search-form" name="search" id="searchForm">
+                    <input name="search" type="text" class="form-control" placeholder="Key Words" style="width:40em">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#advancedSearch" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;'>Advanced Search</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="container collapse" id="advancedSearch" style="background-color:#FFFFFF;opacity: 0.9">
+        <form>
+          <div class="form-group text-left" style="margin-left:12px;margin-top:10px">
+            <label for="filter" style="color:#000000;font-size:12pt">Category</label>
+            <div>
+                <label for="art" class="btn btn-default" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Art <input type="checkbox" id="art" class="badgebox"><span class="badge">&check;</span></label>
+                <label for="business" class="btn btn-warning" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Business <input type="checkbox" id="business" class="badgebox"><span class="badge">&check;</span></label>
+                <label for="food" class="btn btn-info" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Food <input type="checkbox" id="food" class="badgebox"><span class="badge">&check;</span></label>
+                <label for="health" class="btn btn-success" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Health <input type="checkbox" id="health" class="badgebox"><span class="badge">&check;</span></label>
+                <label for="science" class="btn btn-warning" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Science <input type="checkbox" id="science" class="badgebox"><span class="badge">&check;</span></label>
+                <label for="travel" class="btn btn-danger" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Travel <input type="checkbox" id="travel" class="badgebox"><span class="badge">&check;</span></label>
+                <label for="sports" class="btn btn-info" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Sports <input type="checkbox" id="sports" class="badgebox"><span class="badge">&check;</span></label>
+                <label for="world" class="btn btn-success" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>World <input type="checkbox" id="world" class="badgebox"><span class="badge">&check;</span></label>
+            </div>
+          </div>
+          <div class="form-group text-left" style="margin-left:12px">
+              <label for="contain" style="color:#000000;font-size:12pt">Date Range</label><br>
+              <input type="text" style="color:#000000" name="daterange" value="01/01/2015 - 01/31/2015" />
+          </div>
+          <div class="form-group text-left" style="margin-left:12px">
+            <label for="contain" style="color:#000000;font-size:12pt">Key Words</label>
+            <input class="form-control" type="text" style="width: 50em"/>
+          </div>
+          <div class="form-group text-left" style="margin-left:12px">
+              <button type="submit" class="btn btn-danger" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Advanced Search</button>
+          </div>
+        </form>
+    </div>
+
+    <!-- Page Content -->
+    <div class="container" style="background-color:#FFFFFF;opacity: 0.9">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Page Heading
+                    <small>Secondary Text</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Project One -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="/static/img/newsfield/art.jpg" style="width:700px;height:300px;" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Project One</h3>
+                <h4>Subheading</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
+                <a class="btn btn-primary" href="#">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Project Two -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Project Two</h3>
+                <h4>Subheading</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, odit velit cumque vero doloremque repellendus distinctio maiores rem expedita a nam vitae modi quidem similique ducimus! Velit, esse totam tempore.</p>
+                <a class="btn btn-primary" href="#">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Project Three -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Project Three</h3>
+                <h4>Subheading</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, temporibus, dolores, at, praesentium ut unde repudiandae voluptatum sit ab debitis suscipit fugiat natus velit excepturi amet commodi deleniti alias possimus!</p>
+                <a class="btn btn-primary" href="#">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Project Four -->
+        <div class="row">
+
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Project Four</h3>
+                <h4>Subheading</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
+                <a class="btn btn-primary" href="#">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Project Five -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Project Five</h3>
+                <h4>Subheading</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident ex quisquam hic odio repellendus atque porro distinctio quae id laboriosam facilis dolorum.</p>
+                <a class="btn btn-primary" href="#">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Pagination -->
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <li>
+                        <a href="#">&laquo;</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">1</a>
+                    </li>
+                    <li>
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#">4</a>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; News Focus 2014</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="{% static 'js/classie.js' %}"></script>
+    <script src="{% static 'js/cbpAnimatedHeader.js' %}"></script>
+
+    <!-- Form JavaScript -->
+    <script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+    <script src="{% static 'js/validation.js' %}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static 'js/agency.js' %}"></script>
+    <script src="{% static 'js/moment.min.js' %}"></script>
+    <script src="{% static 'js/daterangepicker.js' %}"></script>
+
+</body>
+
+</html>
