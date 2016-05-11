@@ -136,110 +136,21 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 col-sm-6 newsfield-item">
-                    <a href="#newsfieldModal1" class="newsfield-link" data-toggle="modal">
-                        <div class="newsfield-hover">
-                            <div class="newsfield-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="static/img/newsfield/art.jpg" class="img-responsive" alt="">
-                    </a>
-                    <div class="newsfield-caption">
-                        <h4>Art</h4>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 newsfield-item">
-                    <a href="#newsfieldModal2" class="newsfield-link" data-toggle="modal">
-                        <div class="newsfield-hover">
-                            <div class="newsfield-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="static/img/newsfield/business.jpg" class="img-responsive" alt="">
-                    </a>
-                    <div class="newsfield-caption">
-                        <h4>Business</h4>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 newsfield-item">
-                    <a href="#newsfieldModal2" class="newsfield-link" data-toggle="modal">
-                        <div class="newsfield-hover">
-                            <div class="newsfield-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="static/img/newsfield/food.jpg" class="img-responsive" alt="">
-                    </a>
-                    <div class="newsfield-caption">
-                        <h4>Food</h4>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 newsfield-item">
-                    <a href="#newsfieldModal2" class="newsfield-link" data-toggle="modal">
-                        <div class="newsfield-hover">
-                            <div class="newsfield-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="static/img/newsfield/health.jpg" class="img-responsive" alt="">
-                    </a>
-                    <div class="newsfield-caption">
-                        <h4>Health</h4>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 newsfield-item">
-                    <a href="#newsfieldModal2" class="newsfield-link" data-toggle="modal">
-                        <div class="newsfield-hover">
-                            <div class="newsfield-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="static/img/newsfield/science.jpg" class="img-responsive" alt="">
-                    </a>
-                    <div class="newsfield-caption">
-                        <h4>Science</h4>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 newsfield-item">
-                    <a href="#newsfieldModal2" class="newsfield-link" data-toggle="modal">
-                        <div class="newsfield-hover">
-                            <div class="newsfield-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="static/img/newsfield/travel.jpg" class="img-responsive" alt="">
-                    </a>
-                    <div class="newsfield-caption">
-                        <h4>Travel</h4>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 newsfield-item">
-                    <a href="#newsfieldModal2" class="newsfield-link" data-toggle="modal">
-                        <div class="newsfield-hover">
-                            <div class="newsfield-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="static/img/newsfield/sports.jpg" class="img-responsive" alt="">
-                    </a>
-                    <div class="newsfield-caption">
-                        <h4>Sports</h4>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 newsfield-item">
-                    <a href="#newsfieldModal2" class="newsfield-link" data-toggle="modal">
-                        <div class="newsfield-hover">
-                            <div class="newsfield-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="static/img/newsfield/world.jpg" class="img-responsive" alt="">
-                    </a>
-                    <div class="newsfield-caption">
-                        <h4>World</h4>
-                    </div>
-                </div>
+				{% for category in name_lst %}
+					<div class="col-md-3 col-sm-6 newsfield-item">
+						<a href="search/?category={{category}}" class="newsfield-link" data-toggle="modal">
+							<div class="newsfield-hover">
+								<div class="newsfield-hover-content">
+									<i class="fa fa-plus fa-3x"></i>
+								</div>
+							</div>
+							<img src="static/img/newsfield/{{category}}.jpg" class="img-responsive" alt="">
+						</a>
+						<div class="newsfield-caption">
+							<h4>{{category}}</h4>
+						</div>
+					</div>
+				{% endfor %}
             </div>
         </div>
     </section>

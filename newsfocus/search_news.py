@@ -1,20 +1,20 @@
 from elasticsearch import Elasticsearch
 
-def search_by_category(value):
+def search_by_category(ctg):
     es = Elasticsearch()
     indexName = "es_news"
     doc_type = "news"
     query_body={
         "query":{
             "match":{
-                "section": value
+                "section": ctg
             }
         }
     }
     res = es.search(index=indexName, doc_type=doc_type, body=query_body)
-    return res['hits']['hits']
+    return format_output(res['hits']['hits'])
 
-def search_by_all(keywords, ctg, daterange):
+def search_by_all(keywords, ctg=None, daterange=None):
 	if ctg == None:
 		ctg = ["food", "art", "business", "health", "science", "sport", "travel", "world"]
 	if daterange == None:
@@ -46,9 +46,11 @@ def search_by_all(keywords, ctg, daterange):
 		query_body['query']['bool']['must'][1]['bool']['should'].append({"match": {"section" : c}})
 	es = Elasticsearch()
 	res = es.search(index="es_news", doc_type="news", body=query_body)
-	res = res['hits']['hits']
+	return format_output(res['hits']['hits'])
+
+def format_output(output):
 	resList = []
-	for n in res:
+	for n in output:
 		normalized_res = {}
 		normalized_res['id'] = n['_id']
 		normalized_res['byline'] = n['_source']['byline']
@@ -60,6 +62,3 @@ def search_by_all(keywords, ctg, daterange):
 		normalized_res['published_date'] = n['_source']['published_date']
 		resList.append(normalized_res)
 	return resList
-
-if __name__ == '__main__':
-	print searchByCategory('world')
