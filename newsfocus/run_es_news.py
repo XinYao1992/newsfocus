@@ -140,7 +140,19 @@ with open("es_mapping_file.json") as data_file2:
 myElasticsearch = MyElasticsearch(data, schema)
 myElasticsearch.create_news_index()
 myElasticsearch.bulk_insert()
+# with open("all_news.json") as data_file:
+#     data = json.load(data_file)
+# with open("es_mapping_file.json") as data_file2:
+#     schema = json.load(data_file2)
+# myElasticsearch = MyElasticsearch(data, schema)
+# myElasticsearch.create_news_index()
+# myElasticsearch.bulk_insert()
 #rs = myElasticsearch.es.search(index="es_news", body={"query":{"match_all":{}}})
+# a="statins may help"
+# s="01/01/2014 - 02/28/2016"
+# rs2 = myElasticsearch.q_nicesearch(keywords=a,daterange=s)
+#print rs['hits']['total']
+# print rs2[0]['_source']['title']
 a="statins may help"
 c=['health']
 s="2014-01-01 | 2016-01-01"
@@ -148,4 +160,5 @@ s="2014-01-01 | 2016-01-01"
 rs2 = myElasticsearch.q_nicesearch(keywords=a,ctg=c,daterange=s)
 #print rs['hits']['total']
 print rs2[0]
+print rs2
 #print rs3[0]['_source']['section']
