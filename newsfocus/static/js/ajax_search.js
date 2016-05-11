@@ -64,6 +64,8 @@ function grab_selected() {
 	return tasks;
 }
 
+
+
 function display(start) {
 	$("#results").html("");
 	$("#text-field").html("");
@@ -103,7 +105,7 @@ function display(start) {
 									'<p class="item-intro text-muted">' + e['byline'] + '</p>' +
 									'<p class="item-intro text-muted"><a href="'+e['url']+'">go to original website</a></p>'+
 									'<p>' + e['content'] + '</p>' +
-									'<ul class="list-inline">' +
+									'<ul class="list-inline" id="related'+index+'">' +
 										'<li>Date: ' + e['published_date'] + '</li>' +
 										'<li>Category: ' + e['section'] + '</li>' +
 									'</ul>' +
@@ -114,7 +116,23 @@ function display(start) {
 					'</div>' +
 				'</div>' +
 			'</div>'
-		)
+		);
+
+		// function get_related(relateds) {
+		// 	var links = '';
+		// 	for(i = 0; i < e['related_urls'].length; i++){
+		// 		links += '<li>Related: <a href="'+relateds['related_urls'][i]['url']+'">'+relateds['related_urls'][i]['suggested_link_text']+'</a></li>';
+		// 	}
+		// 	return links;
+		// }
+		var len = e['related_urls'].length;
+		for(j = 0; j < len; j++){
+			$("#related"+index).append(
+				// get_related(e);
+				'<li>Related: <a href="'+e['related_urls'][j]['url']+'">'+e['related_urls'][j]['suggested_link_text']+'</a></li>'
+			);
+		}
+
 		index += 1;
 	});
 }

@@ -76,6 +76,9 @@ def format_output(output):
         normalized_res['section'] = n['_source']['section']
         normalized_res['published_date'] = n['_source']['published_date']
         normalized_res['thumbnail_standard'] = n['_source']['thumbnail_standard']
-        normalized_res['related_urls'] = all_news[str(n['_id'])]['related_urls']
+        if all_news[str(n['_id'])]['related_urls'] is None:
+            normalized_res['related_urls'] = []
+        else:
+            normalized_res['related_urls'] = all_news[str(n['_id'])]['related_urls']
         resList.append(normalized_res)
     return resList
