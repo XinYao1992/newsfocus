@@ -71,7 +71,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-left search-form" name="search" id="searchForm">
                     <input name="search" type="text" id="key-words" class="form-control" placeholder="Key Words" style="width:40em">
-                    <button type="submit" class="btn btn-primary" id="ordinary-search">Search</button>
+                    <button type="submit" form="searchForm" class="btn btn-primary" id="ordinary-search">Search</button>
                 </form>
                 <ul class="nav navbar-nav">
                     <li>
@@ -233,8 +233,52 @@
     </div>
     <!-- /text field -->
 
+<<<<<<< HEAD
 	<!-- jQuery -->
     <script src="{% static 'js/jquery.js' %}"></script>
+=======
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <script>
+        $("#ordinary-search").on("click", function(e){
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/ordinary_search/",
+                data: {
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    'keywords': $('#key-words').val(),
+                },
+                success: function(data) {
+                    $("#results").html("");
+                    index = 0;
+                    data.forEach(function(e) {
+                        console.log(e)
+                    $("#results").append(
+                      '<div class="row">'+
+                          '<div class="col-md-1">'+
+                              '<a href="#newsModal'+index+'" class="newsfield-link" data-toggle="modal">'+
+                                  '<img class="img-responsive" src="/static/img/newsfield/art.jpg" style="width:75px;height:75px;margin-top:20px" alt="">'+
+                              '</a>'+
+                          '</div>'+
+                          '<div class="col-md-11">'+
+                              '<h3>'+e['_source']['title']+'</h3>'+
+                              '<h4>Subheading</h4>'+
+                              '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>'+
+                              '<a class="btn btn-primary" href="#newsModal'+index+'" data-toggle="modal">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>'+
+                          '</div>'+
+                      '</div>'+
+                      '<hr>'
+                    );
+                    index += 1;
+                    });
+                }
+            });
+        });
+    </script>
+
+>>>>>>> 881cfd8ac43cf7bbd0f3587912bd45d0aa80a3f5
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
