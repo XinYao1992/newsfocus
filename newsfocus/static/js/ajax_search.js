@@ -8,14 +8,14 @@ var success_action = function(data) {
 			'<div class="row">' +
 				'<div class="col-md-1">' +
 					'<a href="#newsModal' + index + '" class="newsfield-link" data-toggle="modal">' +
-						'<img class="img-responsive" src="/static/img/newsfield/art.jpg" style="width:75px;height:75px;margin-top:20px" alt="">' +
+						'<img class="img-responsive" src="'+e['thumbnail_standard']+'" style="width:75px;height:75px;margin-top:20px" alt="">' +
 					'</a>' +
 				'</div>' +
 				'<div class="col-md-11">'+
 					'<h3>' + e['title'] + '</h3>'+
 					'<h4>' + e['byline'] + '</h4>'+
 					'<p>' + e['abstract'] + '</p>'+
-					'<a class="btn btn-primary" href="#newsModal' + index + '" data-toggle="modal">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>' +
+					'<a class="btn btn-primary" href="#newsModal' + index + '" data-toggle="modal">View News <span class="glyphicon glyphicon-chevron-right"></span></a>' +
 				'</div>' +
 			'</div>' + '<hr>'
 		);

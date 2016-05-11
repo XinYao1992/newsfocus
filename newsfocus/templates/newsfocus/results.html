@@ -66,7 +66,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" style='color: #fed136;font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;' href="#">News Focus</a>
+                <a class="navbar-brand" style='color: #fed136;font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;' href="/">News Focus</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -120,8 +120,8 @@
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Page Heading
-                    <small>Secondary Text</small>
+                <h1 class="page-header">Your Results
+                    <small>The Top 30</small>
                 </h1>
             </div>
         </div>
@@ -131,7 +131,7 @@
 				<div class="row">
                 	<div class="col-md-1">
                     	<a href="#newsModal{{forloop.counter}}" class="newsfield-link" data-toggle="modal">
-                        	<img class="img-responsive" src="/static/img/newsfield/art.jpg" style="width:75px;height:75px;margin-top:20px" alt="">
+                        	<img class="img-responsive" src="{{result.thumbnail_standard}}" style="width:75px;height:75px;margin-top:20px" alt="">
                     	</a>
                 	</div>
                 	<div class="col-md-11">

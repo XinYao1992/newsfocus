@@ -5,6 +5,7 @@ def search_by_category(ctg):
     indexName = "es_news"
     doc_type = "news"
     query_body={
+        "from": 0, "size":30,
         "query":{
             "match":{
                 "section": ctg
@@ -14,6 +15,7 @@ def search_by_category(ctg):
     res = es.search(index=indexName, doc_type=doc_type, body=query_body)
     return format_output(res['hits']['hits'])
 
+
 def search_by_all(keywords, ctg=None, daterange=None):
 	if ctg == None:
 		ctg = ["food", "art", "business", "health", "science", "sport", "travel", "world"]
@@ -21,6 +23,7 @@ def search_by_all(keywords, ctg=None, daterange=None):
 		daterange = "01/01/2010 - 05/10/2016"
 	dateList = daterange.split("-")
 	query_body={
+        "from": 0, "size":30,
 		"query":{
 			"bool":{
 				"must":[
@@ -60,5 +63,6 @@ def format_output(output):
 		normalized_res['url'] = n['_source']['url']
 		normalized_res['section'] = n['_source']['section']
 		normalized_res['published_date'] = n['_source']['published_date']
+		normalized_res['thumbnail_standard'] = n['_source']['thumbnail_standard']
 		resList.append(normalized_res)
 	return resList
