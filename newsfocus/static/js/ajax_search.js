@@ -104,9 +104,9 @@ function display(start) {
 									'<h2>' + e['title'] + '</h2>' +
 									'<p class="item-intro text-muted">' + e['byline'] + '</p>' +
 									'<p class="item-intro text-muted"><a href="'+e['url']+'">go to original website</a></p>'+
+									'<p class="item-intro text-muted">Date: '+e['published_date']+'</p>'+
 									'<p>' + e['content'] + '</p>' +
 									'<ul class="list-inline" id="related'+index+'">' +
-										'<li>Date: ' + e['published_date'] + '</li>' +
 										'<li>Category: ' + e['section'] + '</li>' +
 									'</ul>' +
 									'<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>'+
