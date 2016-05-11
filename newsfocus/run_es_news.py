@@ -120,5 +120,5 @@ c=['health']
 s="01/01/2014 - 02/28/2016"
 rs2 = myElasticsearch.q_nicesearch(keywords=a,ctg=c,daterange=s)
 #print rs['hits']['total']
-print rs2[0]['_source']['title']
+print rs2
 #print rs3[0]['_source']['section']
