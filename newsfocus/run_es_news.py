@@ -54,8 +54,8 @@ class MyElasticsearch():
         res = self.es.search(index="es_news", doc_type="news", body=query_body)
         res = res['hits']['hits']
         resList = []
-        with open("some_news.json") as data_file:
-            data = json.load(data_file)
+        #with open("some_news.json") as data_file:
+        #    data = json.load(data_file)
         for n in res:
             normalized_res = {}
             normalized_res['id'] = n['_id']
@@ -66,10 +66,10 @@ class MyElasticsearch():
             normalized_res['url'] = n['_source']['url']
             normalized_res['section'] = n['_source']['section']
             normalized_res['published_date'] = n['_source']['published_date']
-            if data[n['_id']]['related_urls'] is None:
-                normalized_res['related_urls'] = []
-            else:
-                normalized_res['related_urls'] = data[n['_id']]['related_urls']
+        #    if data[n['_id']]['related_urls'] is None:
+        #        normalized_res['related_urls'] = []
+        #    else:
+        #        normalized_res['related_urls'] = data[n['_id']]['related_urls']
             resList.append(normalized_res)
         return resList
 
@@ -110,12 +110,12 @@ class MyElasticsearch():
             }
         }
         for c in ctg:
-            query_body['query']['bool']['must'][1]['bool']['should'].append({"term": {"section" : c}})
+            query_body['query']['bool']['must'][1]['bool']['should'].append({"match": {"section" : c}})
         res = self.es.search(index="es_news", doc_type="news", body=query_body)
         res = res['hits']['hits']
         resList = []
-        with open("some_news.json") as data_file:
-            data = json.load(data_file)
+        #with open("some_news.json") as data_file:
+        #    data = json.load(data_file)
         for n in res:
             normalized_res = {}
             normalized_res['id'] = n['_id']
@@ -126,10 +126,10 @@ class MyElasticsearch():
             normalized_res['url'] = n['_source']['url']
             normalized_res['section'] = n['_source']['section']
             normalized_res['published_date'] = n['_source']['published_date']
-            if data[n['_id']]['related_urls'] is None:
-                normalized_res['related_urls'] = []
-            else:
-                normalized_res['related_urls'] = data[n['_id']]['related_urls']
+            #if data[n['_id']]['related_urls'] is None:
+            #    normalized_res['related_urls'] = []
+            #else:
+            #    normalized_res['related_urls'] = data[n['_id']]['related_urls']
             resList.append(normalized_res)
         return resList
 

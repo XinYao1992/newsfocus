@@ -79,8 +79,9 @@
                     <div class="row">
                         <div class="form-group">
                           <div class="input-group" style="width:70em;margin:0 auto">
-                              <form name="search" id="searchForm" class="search-form">
-                                  <input type="text" class="form-control" style="height:50px" placeholder="The News You Need" id="news">
+                              <form name="search" id="searchForm" class="search-form" action="search/" method="post">
+								  {% csrf_token %}
+                                  <input type="text" class="form-control" style="height:50px" placeholder="The News You Need" name="keywords">
                               </form>
                               <div class="input-group-btn">
                                   <div class="btn-group" role="group">

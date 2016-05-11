@@ -126,6 +126,22 @@
         </div>
         <!-- /.row -->
         <div id="results">
+			{% for result in results %}
+				<div class="row">
+                	<div class="col-md-1">
+                    	<a href="#newsModal1" class="newsfield-link" data-toggle="modal">
+                        	<img class="img-responsive" src="/static/img/newsfield/art.jpg" style="width:75px;height:75px;margin-top:20px" alt="">
+                    	</a>
+                	</div>
+                	<div class="col-md-11">
+                    	<h3>{{result.title}}</h3>
+                    	<h4>{{result.byline}}</h4>
+                    	<p>{{result.abstract}}</p>
+                    	<a class="btn btn-primary" href="#newsModal1" data-toggle="modal">View News<span class="glyphicon glyphicon-chevron-right"></span></a>
+                	</div>
+            	</div>
+            	<hr>
+			{% endfor %}
             <!-- <div class="row">
                 <div class="col-md-1">
                     <a href="#newsModal1" class="newsfield-link" data-toggle="modal">
@@ -217,44 +233,7 @@
     </div>
     <!-- /text field -->
 
-    <script>
-        $("#ordinary-search").on("click", function(e){
-            e.preventDefault();
-            $.ajax({
-                type: "POST",
-                url: "/ordinary_search/",
-                data: {
-                    csrfmiddlewaretoken: "{{ csrf_token }}",
-                    'keywords': $('#key-words').val(),
-                },
-                success: function(data) {
-                    index = 0;
-                    data.forEach(function(e) {
-                        console.log(e)
-                    $("#results").append(
-                      '<div class="row">'+
-                          '<div class="col-md-1">'+
-                              '<a href="#newsModal'+index+'" class="newsfield-link" data-toggle="modal">'+
-                                  '<img class="img-responsive" src="/static/img/newsfield/art.jpg" style="width:75px;height:75px;margin-top:20px" alt="">'+
-                              '</a>'+
-                          '</div>'+
-                          '<div class="col-md-11">'+
-                              '<h3>'+e['_source']['title']+'</h3>'+
-                              '<h4>Subheading</h4>'+
-                              '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>'+
-                              '<a class="btn btn-primary" href="#newsModal'+index+'" data-toggle="modal">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>'+
-                          '</div>'+
-                      '</div>'+
-                      '<hr>'
-                    );
-                    index += 1;
-                    });
-                }
-            });
-        });
-    </script>
-
-    <!-- jQuery -->
+	<!-- jQuery -->
     <script src="{% static 'js/jquery.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -273,6 +252,46 @@
     <script src="{% static 'js/agency.js' %}"></script>
     <script src="{% static 'js/moment.min.js' %}"></script>
     <script src="{% static 'js/daterangepicker.js' %}"></script>
+
+    <script>
+		var success_action = function(data) {
+			$("#results").html("");
+			index = 0;
+			data.forEach(function(e) {
+				console.log(e)
+			$("#results").append(
+			  '<div class="row">'+
+				  '<div class="col-md-1">'+
+					  '<a href="#newsModal' + index + '" class="newsfield-link" data-toggle="modal">'+
+						  '<img class="img-responsive" src="/static/img/newsfield/art.jpg" style="width:75px;height:75px;margin-top:20px" alt="">'+
+					  '</a>'+
+				  '</div>'+
+				  '<div class="col-md-11">'+
+					  '<h3>' + e['_source']['title'] + '</h3>' +
+					  '<h4>' + e['_source']['byline'] + '</h4>'+
+					  '<p>' + e['_source']['abstract'] + '</p>'+
+					  '<a class="btn btn-primary" href="#newsModal' + index + '" data-toggle="modal">View News<span class="glyphicon glyphicon-chevron-right"></span></a>'+
+				  '</div>'+
+			  '</div>'+
+			  '<hr>'
+			);
+			index += 1;
+			});
+		};
+
+        $("#ordinary-search").on("click", function(e){
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/ordinary_search/",
+                data: {
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    'keywords': $('#key-words').val(),
+                },
+                success: success_action
+            });
+        });
+    </script>
 
 </body>
 
