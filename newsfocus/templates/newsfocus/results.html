@@ -71,7 +71,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-left search-form" name="search" id="searchForm">
                     <input name="search" type="text" id="key-words" class="form-control" placeholder="Key Words" style="width:40em">
-                    <button type="submit" class="btn btn-primary" id="ordinary-search">Search</button>
+                    <button type="submit" form="searchForm" class="btn btn-primary" id="ordinary-search">Search</button>
                 </form>
                 <ul class="nav navbar-nav">
                     <li>
@@ -217,6 +217,9 @@
     </div>
     <!-- /text field -->
 
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+
     <script>
         $("#ordinary-search").on("click", function(e){
             e.preventDefault();
@@ -228,6 +231,7 @@
                     'keywords': $('#key-words').val(),
                 },
                 success: function(data) {
+                    $("#results").html("");
                     index = 0;
                     data.forEach(function(e) {
                         console.log(e)
@@ -254,8 +258,6 @@
         });
     </script>
 
-    <!-- jQuery -->
-    <script src="{% static 'js/jquery.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
