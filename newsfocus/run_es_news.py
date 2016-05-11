@@ -110,7 +110,7 @@ class MyElasticsearch():
             }
         }
         for c in ctg:
-            query_body['query']['bool']['must'][1]['bool']['should'].append({"term": {"section" : c}})
+            query_body['query']['bool']['must'][1]['bool']['should'].append({"match": {"section" : c}})
         res = self.es.search(index="es_news", doc_type="news", body=query_body)
         res = res['hits']['hits']
         resList = []
