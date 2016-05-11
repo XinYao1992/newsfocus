@@ -1,5 +1,6 @@
 var success_action = function(data) {
 	$("#results").html("");
+	$("#text-field").html("");
 	index = 0;
 	data.forEach(function(e) {
 		console.log(e)
