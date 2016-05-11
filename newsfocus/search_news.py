@@ -1,6 +1,6 @@
 from elasticsearch import Elasticsearch
 
-def searchByCategory(value):
+def search_by_category(value):
     es = Elasticsearch()
     indexName = "es_news"
     doc_type = "news"
@@ -14,8 +14,12 @@ def searchByCategory(value):
     res = es.search(index=indexName, doc_type=doc_type, body=query_body)
     return res['hits']['hits']
 
-def advanced_search(keywords, ctg=["food", "art", "business", "health", "science", "sport", "travel", "world"], daterange="2010-01-01 | 2016-05-10"):
-	dateList = daterange.split("|")
+def search_by_all(keywords, ctg, daterange):
+	if ctg == None:
+		ctg = ["food", "art", "business", "health", "science", "sport", "travel", "world"]
+	if daterange == None:
+		daterange = "01/01/2010 - 05/10/2016"
+	dateList = daterange.split("-")
 	query_body={
 		"query":{
 			"bool":{
@@ -23,7 +27,7 @@ def advanced_search(keywords, ctg=["food", "art", "business", "health", "science
 					{"bool":{
 						"must":[
 							{"range":{
-								"published_date": {"gte": dateList[0].strip(), "lte": dateList[1].strip(), "format": "yyyy-MM-dd"}
+								"published_date": {"gte": dateList[0].strip(), "lte": dateList[1].strip(), "format": "MM/dd/yyyy"}
 							}},
 							{"multi_match":{
 								"query": keywords,

@@ -70,7 +70,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-left search-form" name="search" id="searchForm">
-                    <input name="search" type="text" id="key-words" class="form-control" placeholder="Key Words" style="width:40em">
+                    <input name="search" type="text" id="ordinary-key-words" class="form-control" placeholder="Key Words" style="width:40em">
                     <button type="submit" form="searchForm" class="btn btn-primary" id="ordinary-search">Search</button>
                 </form>
                 <ul class="nav navbar-nav">
@@ -89,7 +89,7 @@
           <div class="form-group text-left" style="margin-left:12px;margin-top:10px">
             <label for="filter" style="color:#000000;font-size:12pt">Category</label>
             <div>
-                <label for="art" class="btn btn-default" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Art <input type="checkbox" id="art" class="badgebox"><span class="badge">&check;</span></label>
+                <label for="art" class="btn btn-success" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Art <input type="checkbox" id="art" class="badgebox"><span class="badge">&check;</span></label>
                 <label for="business" class="btn btn-warning" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Business <input type="checkbox" id="business" class="badgebox"><span class="badge">&check;</span></label>
                 <label for="food" class="btn btn-info" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Food <input type="checkbox" id="food" class="badgebox"><span class="badge">&check;</span></label>
                 <label for="health" class="btn btn-success" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Health <input type="checkbox" id="health" class="badgebox"><span class="badge">&check;</span></label>
@@ -101,14 +101,14 @@
           </div>
           <div class="form-group text-left" style="margin-left:12px">
               <label for="contain" style="color:#000000;font-size:12pt">Date Range</label><br>
-              <input type="text" style="color:#000000" name="daterange" value="01/01/2015 - 01/31/2015" />
+              <input id="date-range" type="text" style="color:#000000" name="daterange" value="01/01/2010 - 05/10/2016" />
           </div>
           <div class="form-group text-left" style="margin-left:12px">
             <label for="contain" style="color:#000000;font-size:12pt">Key Words</label>
-            <input class="form-control" type="text" style="width: 50em"/>
+            <input id="advanced-key-words" class="form-control" type="text" style="width: 50em"/>
           </div>
           <div class="form-group text-left" style="margin-left:12px">
-              <button type="submit" class="btn btn-danger" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Advanced Search</button>
+              <button id="advanced-search" type="submit" class="btn btn-danger" style='font-family:"Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif'>Advanced Search</button>
           </div>
         </form>
     </div>
@@ -204,6 +204,7 @@
     <!-- /.container -->
 
     <!-- text field -->
+<div id="text-field">
     <div class="newsfield-modal modal fade" id="newsModal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -231,12 +232,9 @@
             </div>
         </div>
     </div>
+</div>
     <!-- /text field -->
 
-<<<<<<< HEAD
-	<!-- jQuery -->
-    <script src="{% static 'js/jquery.js' %}"></script>
-=======
     <!-- jQuery -->
     <script src="{% static 'js/jquery.js' %}"></script>
 
@@ -278,8 +276,6 @@
         });
     </script>
 
->>>>>>> 881cfd8ac43cf7bbd0f3587912bd45d0aa80a3f5
-
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
@@ -298,44 +294,9 @@
     <script src="{% static 'js/daterangepicker.js' %}"></script>
 
     <script>
-		var success_action = function(data) {
-			$("#results").html("");
-			index = 0;
-			data.forEach(function(e) {
-				console.log(e)
-			$("#results").append(
-			  '<div class="row">'+
-				  '<div class="col-md-1">'+
-					  '<a href="#newsModal' + index + '" class="newsfield-link" data-toggle="modal">'+
-						  '<img class="img-responsive" src="/static/img/newsfield/art.jpg" style="width:75px;height:75px;margin-top:20px" alt="">'+
-					  '</a>'+
-				  '</div>'+
-				  '<div class="col-md-11">'+
-					  '<h3>' + e['_source']['title'] + '</h3>' +
-					  '<h4>' + e['_source']['byline'] + '</h4>'+
-					  '<p>' + e['_source']['abstract'] + '</p>'+
-					  '<a class="btn btn-primary" href="#newsModal' + index + '" data-toggle="modal">View News<span class="glyphicon glyphicon-chevron-right"></span></a>'+
-				  '</div>'+
-			  '</div>'+
-			  '<hr>'
-			);
-			index += 1;
-			});
-		};
-
-        $("#ordinary-search").on("click", function(e){
-            e.preventDefault();
-            $.ajax({
-                type: "POST",
-                url: "/ordinary_search/",
-                data: {
-                    csrfmiddlewaretoken: "{{ csrf_token }}",
-                    'keywords': $('#key-words').val(),
-                },
-                success: success_action
-            });
-        });
+		var csrf_token = "{{ csrf_token }}";
     </script>
+	<script src="{% static 'js/ajax_search.js' %}"></script>
 
 </body>
 
