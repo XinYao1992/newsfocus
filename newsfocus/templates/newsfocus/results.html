@@ -70,8 +70,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-left search-form" name="search" id="searchForm">
-                    <input name="search" type="text" class="form-control" placeholder="Key Words" style="width:40em">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <input name="search" type="text" id="key-words" class="form-control" placeholder="Key Words" style="width:40em">
+                    <button type="submit" class="btn btn-primary" id="ordinary-search">Search</button>
                 </form>
                 <ul class="nav navbar-nav">
                     <li>
@@ -125,97 +125,22 @@
             </div>
         </div>
         <!-- /.row -->
-
-        <!-- Project One -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#newsModal1" class="newsfield-link" data-toggle="modal">
-                    <img class="img-responsive" src="/static/img/newsfield/art.jpg" style="width:700px;height:300px;" alt="">
-                </a>
+        <div id="results">
+            <!-- <div class="row">
+                <div class="col-md-1">
+                    <a href="#newsModal1" class="newsfield-link" data-toggle="modal">
+                        <img class="img-responsive" src="/static/img/newsfield/art.jpg" style="width:75px;height:75px;margin-top:20px" alt="">
+                    </a>
+                </div>
+                <div class="col-md-11">
+                    <h3>Project One</h3>
+                    <h4>Subheading</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
+                    <a class="btn btn-primary" href="#newsModal1" data-toggle="modal">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
             </div>
-            <div class="col-md-5">
-                <h3>Project One</h3>
-                <h4>Subheading</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-                <a class="btn btn-primary" href="#newsModal1" data-toggle="modal">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
+            <hr> -->
         </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Project Two -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Project Two</h3>
-                <h4>Subheading</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, odit velit cumque vero doloremque repellendus distinctio maiores rem expedita a nam vitae modi quidem similique ducimus! Velit, esse totam tempore.</p>
-                <a class="btn btn-primary" href="#">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Project Three -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Project Three</h3>
-                <h4>Subheading</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, temporibus, dolores, at, praesentium ut unde repudiandae voluptatum sit ab debitis suscipit fugiat natus velit excepturi amet commodi deleniti alias possimus!</p>
-                <a class="btn btn-primary" href="#">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Project Four -->
-        <div class="row">
-
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Project Four</h3>
-                <h4>Subheading</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
-                <a class="btn btn-primary" href="#">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Project Five -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Project Five</h3>
-                <h4>Subheading</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, quo, minima, inventore voluptatum saepe quos nostrum provident ex quisquam hic odio repellendus atque porro distinctio quae id laboriosam facilis dolorum.</p>
-                <a class="btn btn-primary" href="#">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
 
         <!-- Pagination -->
         <div class="row text-center">
@@ -291,6 +216,43 @@
         </div>
     </div>
     <!-- /text field -->
+
+    <script>
+        $("#ordinary-search").on("click", function(e){
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/ordinary_search/",
+                data: {
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    'keywords': $('#key-words').val(),
+                },
+                success: function(data) {
+                    index = 0;
+                    data.forEach(function(e) {
+                        console.log(e)
+                    $("#results").append(
+                      '<div class="row">'+
+                          '<div class="col-md-1">'+
+                              '<a href="#newsModal'+index+'" class="newsfield-link" data-toggle="modal">'+
+                                  '<img class="img-responsive" src="/static/img/newsfield/art.jpg" style="width:75px;height:75px;margin-top:20px" alt="">'+
+                              '</a>'+
+                          '</div>'+
+                          '<div class="col-md-11">'+
+                              '<h3>'+e['_source']['title']+'</h3>'+
+                              '<h4>Subheading</h4>'+
+                              '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>'+
+                              '<a class="btn btn-primary" href="#newsModal'+index+'" data-toggle="modal">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>'+
+                          '</div>'+
+                      '</div>'+
+                      '<hr>'
+                    );
+                    index += 1;
+                    });
+                }
+            });
+        });
+    </script>
 
     <!-- jQuery -->
     <script src="{% static 'js/jquery.js' %}"></script>

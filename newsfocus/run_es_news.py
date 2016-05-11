@@ -107,18 +107,26 @@ class MyElasticsearch():
         normalized_res['published_date'] = res['_source']['published_date']
         return normalized_res
 
-with open("all_news.json") as data_file:
-    data = json.load(data_file)
-with open("es_mapping_file.json") as data_file2:
-    schema = json.load(data_file2)
-myElasticsearch = MyElasticsearch(data, schema)
+# with open("all_news.json") as data_file:
+#     data = json.load(data_file)
+# with open("es_mapping_file.json") as data_file2:
+#     schema = json.load(data_file2)
+# myElasticsearch = MyElasticsearch(data, schema)
 # myElasticsearch.create_news_index()
 # myElasticsearch.bulk_insert()
 #rs = myElasticsearch.es.search(index="es_news", body={"query":{"match_all":{}}})
+<<<<<<< HEAD
+# a="statins may help"
+# s="01/01/2014 - 02/28/2016"
+# rs2 = myElasticsearch.q_nicesearch(keywords=a,daterange=s)
+#print rs['hits']['total']
+# print rs2[0]['_source']['title']
+=======
 a="statins may help"
 c=['health']
 s="01/01/2014 - 02/28/2016"
 rs2 = myElasticsearch.q_nicesearch(keywords=a,ctg=c,daterange=s)
 #print rs['hits']['total']
 print rs2
+>>>>>>> 1ff940ee0c03554b57c60a3fdfb2443058bd6157
 #print rs3[0]['_source']['section']
