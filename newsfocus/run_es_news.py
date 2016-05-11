@@ -43,28 +43,36 @@ class MyElasticsearch():
             actions.append(self.format_action(key, value2))
         helpers.bulk(self.es, actions, stats_only=True)
 
-    def q_category(self, field_name, value):
+    def q_category(self, value):
         query_body={
             "query":{
                 "match":{
-                    field_name: value
+                    "section": value
                 }
             }
         }
         res = self.es.search(index="es_news", doc_type="news", body=query_body)
-        return res['hits']['hits']
+        res = res['hits']['hits']
+        normalized_res = {}
+        normalized_res['id'] = res['_id']
+        normalized_res['byline'] = res['_source']['byline']
+        normalized_res['title'] = res['_source']['title']
+        normalized_res['abstract'] = res['_source']['abstract']
+        normalized_res['url'] = res['_source']['url']
+        normalized_res['published_date'] = res['_source']['published_date']
+        return normalized_res
 
-    def q_keywords(self, value):
-        query_body={
-            "query":{
-                "multi_match":{
-                    "query": value,
-                    "fields": ["section^1", "title^3", "abstract^2", "content^2", "byline^1", "source^1", "des_facet^1", "geo_facet^1"]
-                }
-            }
-        }
-        res = self.es.search(index="es_news", doc_type="news", body=query_body)
-        return res['hits']['hits']
+    # def q_keywords(self, value):
+    #     query_body={
+    #         "query":{
+    #             "multi_match":{
+    #                 "query": value,
+    #                 "fields": ["section^1", "title^3", "abstract^2", "content^2", "byline^1", "source^1", "des_facet^1", "geo_facet^1"]
+    #             }
+    #         }
+    #     }
+    #     res = self.es.search(index="es_news", doc_type="news", body=query_body)
+    #     return res['hits']['hits']
 
     def q_nicesearch(self, keywords, ctg=["food", "art", "business", "health", "science", "sport", "travel", "world"], daterange="01/01/2010 - 05/10/2016"):
         dateList = daterange.split("-")
@@ -89,7 +97,15 @@ class MyElasticsearch():
             }
         }
         res = self.es.search(index="es_news", doc_type="news", body=query_body)
-        return res['hits']['hits']
+        res = res['hits']['hits']
+        normalized_res = {}
+        normalized_res['id'] = res['_id']
+        normalized_res['byline'] = res['_source']['byline']#byline: author
+        normalized_res['title'] = res['_source']['title']
+        normalized_res['abstract'] = res['_source']['abstract']
+        normalized_res['url'] = res['_source']['url']
+        normalized_res['published_date'] = res['_source']['published_date']
+        return normalized_res
 
 with open("all_news.json") as data_file:
     data = json.load(data_file)
@@ -100,8 +116,9 @@ myElasticsearch = MyElasticsearch(data, schema)
 # myElasticsearch.bulk_insert()
 #rs = myElasticsearch.es.search(index="es_news", body={"query":{"match_all":{}}})
 a="statins may help"
+c=['health']
 s="01/01/2014 - 02/28/2016"
-rs2 = myElasticsearch.q_nicesearch(keywords=a,daterange=s)
+rs2 = myElasticsearch.q_nicesearch(keywords=a,ctg=c,daterange=s)
 #print rs['hits']['total']
 print rs2[0]['_source']['title']
 #print rs3[0]['_source']['section']
