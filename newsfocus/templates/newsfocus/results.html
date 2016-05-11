@@ -210,6 +210,9 @@
 									<p class="item-intro text-muted"><a href="{{result.url}}">go to original website</a></p>
 	                            	<p>{{result.content}}</p>
 	                            	<ul class="list-inline">
+                                    {% for related_url in result.related_urls %}
+                                        <li>Related: <a href="{{related_url.url}}">{{related_url.suggested_link_text}}</a></li>
+                                    {% endfor %}
 	                                	<li>Date: {{result.published_date}}</li>
 	                                	<li>Category: {{result.section}}</li>
 	                            	</ul>
