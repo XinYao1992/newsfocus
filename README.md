@@ -20,6 +20,7 @@ For Corpus:
 
 
 For indices and search queries:
+
 	In our mapping schema, we defined "my_analyzer" which has snowball analyzer, loowercase, stopwords. For news' properties,
 We analyzed "section", "title", "abstract", "content", "byline", "source", "published_date". We also treated "published_date" as 
 "date" type with the format "yyyy-MM-dd". 
@@ -30,6 +31,7 @@ the best matched results for users.
 
 
 For user interface:
+
 	We set up a nice Django framework into our project, which improves our user experience. In our UI, you 
 can see our team's information, and search the news from the input box, or, you can simply click on the type image which directly
 shows all the related news in that field. We show 30 results in one page, and we have "next button" function to get more information.
