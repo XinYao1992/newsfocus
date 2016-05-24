@@ -30,7 +30,7 @@ the best matched results for users.
 
 
 For user interface:
-	We are proud of that we set up a nice Django framework into our project, which improves our user experience. In our UI, you 
+	We set up a nice Django framework into our project, which improves our user experience. In our UI, you 
 can see our team's information, and search the news from the input box, or, you can simply click on the type image which directly
 shows all the related news in that field. We show 30 results in one page, and we have "next button" function to get more information.
 To reduce the processing time, we also implement Ajax and Javascript functions. 
